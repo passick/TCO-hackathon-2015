@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'organizations',
     'offices',
     'breaks',
+    'bootstrap3',
 )
 
 MIDDLEWARE_CLASSES = (
