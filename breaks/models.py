@@ -9,5 +9,6 @@ class Break(models.Model):
     office = models.ForeignKey('offices.Office')
     duration = models.DurationField(default=timedelta())
     start_time = models.DateTimeField()
+    going = models.ManyToManyField(User, related_name="users_going")
 
 # Create your models here.
