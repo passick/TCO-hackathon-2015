@@ -1,0 +1,4 @@
+{{ office.name }}
+{% for break in office.break_set.all %}
+Description: {{ break.description }}
+{% endfor %}

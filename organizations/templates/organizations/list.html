@@ -1,4 +1,7 @@
-List
+List of organizations:
 {% for org in object_list %}
-<p>{{ org.name }}</p>
+<div>Organization {{ org.name }} in {{ org.country }}, {{org.city}}</div>
+{% for office in org.office_set.all %}
+<div class="office"><a href="{% url 'office_info' office.pk %}"> {{ office.name }} </a></div>
+{% endfor %}
 {% endfor %}
