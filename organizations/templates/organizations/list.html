@@ -6,17 +6,24 @@
   List of organizations
 </h3>
 {% for org in object_list %}
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      Organization {{ org.name }} in {{ org.country }}, {{org.city}}
+  <div class="row">
+    <div class="col-md-8 panel panel-default">
+      <ul class="list-group">
+        {% for office in org.office_set.all %}
+          <li class="list-group-item">
+            <a href="{% url 'office_info' office.pk %}"> {{ office.name }} </a>
+          </li>
+        {% endfor %}
+        {% if org.office_set.count == 0 %}
+          <li class="list-group-item">
+            No offices created in this organization yet.
+          </li>
+        {% endif %}
+      </ul>
     </div>
-    <ul class="list-group">
-      {% for office in org.office_set.all %}
-        <li class="list-group-item">
-          <a href="{% url 'office_info' office.pk %}"> {{ office.name }} </a>
-        </li>
-      {% endfor %}
-    </ul>
+    <div class="col-md-4 panel-heading">
+      Organization {{ org.name }} in {{ org.country }}, {{org.city}}.
+    </div>
   </div>
 {% endfor %}
 

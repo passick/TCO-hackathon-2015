@@ -5,14 +5,23 @@
   <div class="list-group col-md-8">
     {% for break in office.break_set.all %}
       <a href="#" class="list-group-item">
-        <span class="badge">2</span>
+        <span class="badge">{{break.going.count}}</span>
         <p>{{ break.description }}</p>
-        <p> hahaha </p>
+        {% if break.going.count > 0 %}
+          <h6> People going:
+            {% for user in break.going.all %}
+              <span class="label label-info">
+                {{user.first_name}} {{user.last_name}} ({{user.username}})
+              </span>
+            {% endfor %}
+          </h6>
+        {% endif %}
       </a>
     {% endfor %}
   </div>
   <div class="col-md-4">
-    {{office.name}}
+    That's list of breaks in {{office.name}},
+    {{office.organization.name}}.
   </div>
 </div>
 
